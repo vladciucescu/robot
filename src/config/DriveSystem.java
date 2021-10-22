@@ -1,6 +1,6 @@
-package domain;
+package config;
 
-public enum DriveSystem {
+enum DriveSystem {
     SWERVE,
     ARCADE,
     TANK,

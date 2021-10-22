@@ -1,8 +1,6 @@
 package config;
 
-import domain.DriveSystem;
 import domain.Movement;
-import domain.RobotSettings;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -23,7 +21,7 @@ public class SettingsReader {
         instance = this;
     }
 
-    public Optional<RobotSettings> readSettings() {
+    public Optional<List<Movement>> readSettings() {
         try {
             List<String> lines = Files.readAllLines(Path.of(SETTINGS_FILE));
             if (lines.isEmpty()) {
@@ -33,10 +31,11 @@ public class SettingsReader {
             var driveSystem = DriveSystem.valueOf(lines.get(0));
             var movesParser = MovesParser.getInstance();
             var moves = movesParser.parseInputs(driveSystem, lines.subList(1, lines.size()));
-            var settings = new RobotSettings(driveSystem, moves);
-            return Optional.of(settings);
+            return Optional.of(moves);
         } catch (IOException e) {
             System.out.println("Cannot read robot settings file.");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Unknown drive system");
         }
         return Optional.empty();
     }

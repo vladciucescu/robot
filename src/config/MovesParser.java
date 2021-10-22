@@ -1,6 +1,5 @@
 package config;
 
-import domain.DriveSystem;
 import domain.Movement;
 
 import java.util.List;
@@ -61,7 +60,7 @@ class MovesParser {
     }
 
     private Movement getOmniMove(String input) {
-        if (!input.matches("[FBLR],[FBLR]")) {
+        if (!input.matches("[FBLRN],[FBLRN]")) {
             return NONE;
         }
         return switch (input) {
@@ -69,8 +68,8 @@ class MovesParser {
             case "B,B" -> BACKWARD;
             case "F,B" -> ROTATE_RIGHT;
             case "B,F" -> ROTATE_LEFT;
-            case "F,R" -> TURN_RIGHT;
-            case "L,F" -> TURN_LEFT;
+            case "F,N" -> TURN_RIGHT; // N means neutral
+            case "N,F" -> TURN_LEFT;
             case "L,L" -> LEFT;
             case "R,R" -> RIGHT;
             default -> NONE;
