@@ -1,4 +1,4 @@
-import config.RobotSettings;
+import domain.RobotSettings;
 import config.SettingsReader;
 import domain.Board;
 import domain.Robot;

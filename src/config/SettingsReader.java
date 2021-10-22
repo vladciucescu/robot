@@ -2,11 +2,11 @@ package config;
 
 import domain.DriveSystem;
 import domain.Movement;
+import domain.RobotSettings;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,17 +31,14 @@ public class SettingsReader {
                 return Optional.empty();
             }
             var driveSystem = DriveSystem.valueOf(lines.get(0));
-            var moves = getMoves(driveSystem, lines.subList(1, lines.size()));
+            var movesParser = MovesParser.getInstance();
+            var moves = movesParser.parseInputs(driveSystem, lines.subList(1, lines.size()));
             var settings = new RobotSettings(driveSystem, moves);
             return Optional.of(settings);
         } catch (IOException e) {
             System.out.println("Cannot read robot settings file.");
         }
         return Optional.empty();
-    }
-
-    private List<Movement> getMoves(DriveSystem driveSystem, List<String> inputs) {
-        return Collections.emptyList();
     }
 
     public static SettingsReader getInstance() {

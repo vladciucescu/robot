@@ -8,5 +8,6 @@ public enum Movement {
     TURN_RIGHT,
     TURN_LEFT,
     ROTATE_RIGHT,
-    ROTATE_LEFT
+    ROTATE_LEFT,
+    NONE
 }
