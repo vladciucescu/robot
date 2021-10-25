@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-import static domain.BoardObject.EMPTY;
+import static domain.BoardObject.*;
 
 public class Board {
 
@@ -50,5 +50,10 @@ public class Board {
         int row = coordinates.row();
         int column = coordinates.column();
         return 0 <= row && row < rows && 0 <= column && column < columns;
+    }
+
+    public void updateRobotPosition(Robot robot, Coordinates previousPosition) {
+        setBoardObject(previousPosition, ROBOT_TRAIL);
+        setBoardObject(robot.getPosition(), ROBOT);
     }
 }

@@ -1,44 +1,38 @@
 package domain;
 
 public enum Movement {
-    FORWARD(1,0),
-    BACKWARD(-1,0),
-    LEFT(0,-1),
-    RIGHT(0,1),
-    TURN_RIGHT(1,-1),
-    TURN_LEFT(1,1),
-    ROTATE_RIGHT(0,0),
-    ROTATE_LEFT(0,0),
-    NONE(0,0);
+    FORWARD(1,0, 0),
+    BACKWARD(-1,0, 0),
+    LEFT(0,-1, 0),
+    RIGHT(0,1, 0),
+    TURN_RIGHT(1,-1, -90),
+    TURN_LEFT(1,1, 90),
+    ROTATE_RIGHT(0,0, -90),
+    ROTATE_LEFT(0,0, 90),
+    NONE(0,0, 0);
 
     private final int rowIndex;
     private final int columnIndex;
+    final int rotationDegrees;
 
-    Movement(int rowIndex, int columnIndex) {
+    Movement(int rowIndex, int columnIndex, int rotationDegrees) {
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
-    }
-
-    int nextRow(Direction direction) {
-        return rotateX(rowIndex, columnIndex, direction);
-    }
-
-    int nextColumn(Direction direction) {
-        return rotateY(rowIndex, columnIndex, direction);
+        this.rotationDegrees = rotationDegrees;
     }
 
     // https://en.wikipedia.org/wiki/Rotation_matrix
-    private int rotateX(int x, int y, Direction direction) {
-        var radians = Math.toRadians(direction.rotationDegrees);
+    int nextRow() {
+        var radians = Math.toRadians(rotationDegrees);
         var sin = Math.sin(radians);
         var cos = Math.cos(radians);
-        return (int)(x * cos - y * sin);
+        return (int)(rowIndex * cos - columnIndex * sin);
     }
 
-    private int rotateY(int x, int y, Direction direction) {
-        var radians = Math.toRadians(direction.rotationDegrees);
+    int nextColumn() {
+        var radians = Math.toRadians(rotationDegrees);
         var sin = Math.sin(radians);
         var cos = Math.cos(radians);
-        return (int)(x * cos + y * sin);
+        return (int)(rowIndex * cos + columnIndex * sin);
     }
 }
