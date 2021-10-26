@@ -51,9 +51,4 @@ public class Board {
         int column = coordinates.column();
         return 0 <= row && row < rows && 0 <= column && column < columns;
     }
-
-    public void updateRobotPosition(Robot robot, Coordinates previousPosition) {
-        setBoardObject(previousPosition, ROBOT_TRAIL);
-        setBoardObject(robot.getPosition(), ROBOT);
-    }
 }

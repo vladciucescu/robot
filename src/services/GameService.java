@@ -1,13 +1,13 @@
 package services;
 
-import domain.Board;
-import domain.Coordinates;
-import domain.Movement;
-import domain.Robot;
+import domain.*;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import static domain.BoardObject.ROBOT;
+import static domain.BoardObject.ROBOT_TRAIL;
 
 public class GameService {
 
@@ -19,6 +19,7 @@ public class GameService {
         this.board = board;
         this.robot = robot;
         this.robotMoves = new LinkedList<>(robotMoves);
+        board.setBoardObject(robot.getPosition(), ROBOT);
     }
 
     public boolean canMoveRobot() {
@@ -30,7 +31,8 @@ public class GameService {
         validateMove(board, robot, move);
         var previousPosition = robot.getPosition();
         robot.move(move);
-        board.updateRobotPosition(robot, previousPosition);
+        board.setBoardObject(previousPosition, ROBOT_TRAIL);
+        board.setBoardObject(robot.getPosition(), ROBOT);
     }
 
     private void validateMove(Board board, Robot robot, Movement move) {
@@ -39,7 +41,15 @@ public class GameService {
         }
         Coordinates nextPosition = robot.getNextPosition(move);
         if (!board.isOnBoard(nextPosition)) {
-            throw new InvalidMoveException("Snake hits the wall!");
+            throw new InvalidMoveException("Robot hits the wall!");
         }
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public Orientation getRobotOrientation() {
+        return robot.getOrientation();
     }
 }

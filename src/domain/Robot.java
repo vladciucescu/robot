@@ -21,14 +21,19 @@ public class Robot {
     }
 
     public void move(Movement move) {
+        logMove(move);
         orientation = getNextOrientation(move);
         position = getNextPosition(move);
     }
 
+    private void logMove(Movement move) {
+        System.out.printf("Moving %s facing robot from position (%d,%d): %s\n", orientation, position.row()+1, position.column()+1, move);
+    }
+
     public Coordinates getNextPosition(Movement move) {
-        int nextRow = move.nextRow();
-        int nextColumn = move.nextColumn();
-        return new Coordinates(position.row() + nextRow, position.column() + nextColumn);
+        int rowIndex = move.rowIndex(orientation);
+        int columnIndex = move.columnIndex(orientation);
+        return new Coordinates(position.row() + rowIndex, position.column() + columnIndex);
     }
 
     private Orientation getNextOrientation(Movement move) {

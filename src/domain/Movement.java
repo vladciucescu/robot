@@ -22,17 +22,15 @@ public enum Movement {
     }
 
     // https://en.wikipedia.org/wiki/Rotation_matrix
-    int nextRow() {
-        var radians = Math.toRadians(rotationDegrees);
-        var sin = Math.sin(radians);
-        var cos = Math.cos(radians);
+    int rowIndex(Orientation orientation) {
+        var sin = Math.sin(orientation.degrees);
+        var cos = Math.cos(orientation.degrees);
         return (int)(rowIndex * cos - columnIndex * sin);
     }
 
-    int nextColumn() {
-        var radians = Math.toRadians(rotationDegrees);
-        var sin = Math.sin(radians);
-        var cos = Math.cos(radians);
+    int columnIndex(Orientation orientation) {
+        var sin = Math.sin(orientation.degrees);
+        var cos = Math.cos(orientation.degrees);
         return (int)(rowIndex * cos + columnIndex * sin);
     }
 }
