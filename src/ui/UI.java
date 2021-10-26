@@ -21,6 +21,7 @@ public class UI {
             service.moveRobot();
             Thread.sleep(1000);
         }
+        printBoard(service.getBoard(), service.getRobotOrientation());
     }
 
     private void printBoard(Board board, Orientation robotOrientation) {

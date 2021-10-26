@@ -25,12 +25,12 @@ public enum Movement {
     int rowIndex(Orientation orientation) {
         var sin = Math.sin(orientation.degrees);
         var cos = Math.cos(orientation.degrees);
-        return (int)(rowIndex * cos - columnIndex * sin);
+        return (int)(rowIndex * sin + columnIndex * cos);
     }
 
     int columnIndex(Orientation orientation) {
         var sin = Math.sin(orientation.degrees);
         var cos = Math.cos(orientation.degrees);
-        return (int)(rowIndex * cos + columnIndex * sin);
+        return (int)(rowIndex * cos - columnIndex * sin);
     }
 }

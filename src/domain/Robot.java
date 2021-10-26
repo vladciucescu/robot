@@ -21,7 +21,6 @@ public class Robot {
     }
 
     public void move(Movement move) {
-        logMove(move);
         orientation = getNextOrientation(move);
         position = getNextPosition(move);
     }
