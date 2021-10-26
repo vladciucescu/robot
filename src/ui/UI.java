@@ -50,10 +50,10 @@ public class UI {
 
     private String getRobotSymbol(Orientation orientation) {
         return switch (orientation) {
-            case EAST -> "\u2B9E";
-            case NORTH -> "\u2B9D";
-            case WEST -> "\u2B9C";
-            case SOUTH -> "\u2B9F";
+            case EAST -> "\u25B6";
+            case NORTH -> "\u25B2";
+            case WEST -> "\u25C0";
+            case SOUTH -> "\u25BC";
         };
     }
 }
