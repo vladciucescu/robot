@@ -47,7 +47,7 @@ class MovesParser {
     }
 
     private Movement getTankMove(String input) {
-        if (!input.matches("[FBLR],[FBLR]")) {
+        if (!input.matches("[FB],[FB]")) {
             return NONE;
         }
         return switch (input) {
@@ -60,7 +60,7 @@ class MovesParser {
     }
 
     private Movement getOmniMove(String input) {
-        if (!input.matches("[FBLRN],[FBLRN]")) {
+        if (!input.matches("[LR]|[FBLR],[FBLR]")) {
             return NONE;
         }
         return switch (input) {
@@ -68,8 +68,8 @@ class MovesParser {
             case "B,B" -> BACKWARD;
             case "F,B" -> ROTATE_RIGHT;
             case "B,F" -> ROTATE_LEFT;
-            case "F,N" -> TURN_RIGHT; // N means neutral
-            case "N,F" -> TURN_LEFT;
+            case "L" -> TURN_RIGHT;
+            case "R" -> TURN_LEFT;
             case "L,L" -> LEFT;
             case "R,R" -> RIGHT;
             default -> NONE;
