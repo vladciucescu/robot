@@ -5,10 +5,10 @@ public enum Movement {
     BACKWARD(-1,0, 0),
     LEFT(0,-1, 0),
     RIGHT(0,1, 0),
-    TURN_RIGHT(1,-1, -90),
-    TURN_LEFT(1,1, 90),
-    ROTATE_RIGHT(0,0, -90),
-    ROTATE_LEFT(0,0, 90),
+    TURN_LEFT(1,-1, -90),
+    TURN_RIGHT(1,1, 90),
+    ROTATE_LEFT(0,0, -90),
+    ROTATE_RIGHT(0,0, 90),
     NONE(0,0, 0);
 
     private final int rowIndex;
@@ -21,16 +21,18 @@ public enum Movement {
         this.rotationDegrees = rotationDegrees;
     }
 
-    // https://en.wikipedia.org/wiki/Rotation_matrix
+    // https://en.wikipedia.org/wiki/Rotation_matrix#In_two_dimensions
     int rowIndex(Orientation orientation) {
-        var sin = Math.sin(orientation.degrees);
-        var cos = Math.cos(orientation.degrees);
-        return (int)(rowIndex * sin + columnIndex * cos);
+        double radians = Math.toRadians(orientation.degrees);
+        double sin = Math.sin(radians);
+        double cos = Math.cos(radians);
+        return (int)Math.round(rowIndex * sin + columnIndex * cos);
     }
 
     int columnIndex(Orientation orientation) {
-        var sin = Math.sin(orientation.degrees);
-        var cos = Math.cos(orientation.degrees);
-        return (int)(rowIndex * cos - columnIndex * sin);
+        double radians = Math.toRadians(orientation.degrees);
+        double sin = Math.sin(radians);
+        double cos = Math.cos(radians);
+        return (int)Math.round(rowIndex * cos - columnIndex * sin);
     }
 }

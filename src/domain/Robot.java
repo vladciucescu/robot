@@ -21,8 +21,8 @@ public class Robot {
     }
 
     public void move(Movement move) {
-        orientation = getNextOrientation(move);
         position = getNextPosition(move);
+        orientation = getNextOrientation(move);
     }
 
     private void logMove(Movement move) {
@@ -32,7 +32,8 @@ public class Robot {
     public Coordinates getNextPosition(Movement move) {
         int rowIndex = move.rowIndex(orientation);
         int columnIndex = move.columnIndex(orientation);
-        return new Coordinates(position.row() + rowIndex, position.column() + columnIndex);
+        Coordinates coordinates = new Coordinates(position.row() + rowIndex, position.column() + columnIndex);
+        return coordinates;
     }
 
     private Orientation getNextOrientation(Movement move) {
