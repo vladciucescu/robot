@@ -1,6 +1,10 @@
 package services;
 
-import domain.*;
+import domain.Board;
+import domain.Coordinates;
+import domain.Movement;
+import domain.Orientation;
+import domain.Robot;
 
 import java.util.LinkedList;
 import java.util.List;

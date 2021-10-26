@@ -2,7 +2,7 @@ package domain;
 
 import java.util.List;
 
-import static domain.BoardObject.*;
+import static domain.BoardObject.EMPTY;
 
 public class Board {
 
@@ -36,10 +36,6 @@ public class Board {
 
     public void setBoardObject(Coordinates coordinates, BoardObject boardObject) {
         board[coordinates.row()][coordinates.column()] = boardObject;
-    }
-
-    public BoardObject getBoardObject(Coordinates coordinates) {
-        return board[coordinates.row()][coordinates.column()];
     }
 
     public List<BoardObject> getRow(int rowIndex) {

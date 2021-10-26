@@ -4,7 +4,15 @@ import domain.Movement;
 
 import java.util.List;
 
-import static domain.Movement.*;
+import static domain.Movement.BACKWARD;
+import static domain.Movement.FORWARD;
+import static domain.Movement.LEFT;
+import static domain.Movement.NONE;
+import static domain.Movement.RIGHT;
+import static domain.Movement.ROTATE_LEFT;
+import static domain.Movement.ROTATE_RIGHT;
+import static domain.Movement.TURN_LEFT;
+import static domain.Movement.TURN_RIGHT;
 
 class MovesParser {
 

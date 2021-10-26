@@ -26,14 +26,13 @@ public class Robot {
     }
 
     private void logMove(Movement move) {
-        System.out.printf("Moving %s facing robot from position (%d,%d): %s\n", orientation, position.row()+1, position.column()+1, move);
+        System.out.printf("Moving %s facing robot from position (%d,%d): %s\n", orientation, position.row() + 1, position.column() + 1, move);
     }
 
     public Coordinates getNextPosition(Movement move) {
         int rowIndex = move.rowIndex(orientation);
         int columnIndex = move.columnIndex(orientation);
-        Coordinates coordinates = new Coordinates(position.row() + rowIndex, position.column() + columnIndex);
-        return coordinates;
+        return new Coordinates(position.row() + rowIndex, position.column() + columnIndex);
     }
 
     private Orientation getNextOrientation(Movement move) {
